@@ -3,64 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ซองจดหมายสุขสันต์วันวาเลนไทน์</title>
+    <title>ปลาวาฬพิกเซลที่คลิกเพื่อเคลื่อนที่</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            background-color: #a8e0e8; /* สีฟ้าเพื่อให้ดูเหมือนน้ำ */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        .envelope {
-            width: 300px;
-            height: 180px;
-            background-color: #ff6f61;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .envelope::before {
-            content: "";
+
+        #whale {
+            width: 60px;
+            height: 60px;
+            background-color: #3a6b8b; /* สีของปลาวาฬ */
+            clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
             position: absolute;
-            top: -10px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background-color: #ff3e2f;
-            border-radius: 10px;
+            transition: transform 0.5s ease-out; /* เพิ่มความนุ่มนวลในการเคลื่อนที่ */
         }
-        .heart {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 60px;
-            color: white;
-        }
-        .message {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 18px;
-            color: white;
-            text-align: center;
-            width: 80%;
-        }
+
     </style>
 </head>
 <body>
-    <div class="envelope">
-        <div class="heart">&#10084;</div>
-        <div class="message">
-            <p>สุขสันต์วันวาเลนไทน์!</p>
-            <p>ขอให้คุณมีความสุขและความรักที่ยั่งยืน</p>
-        </div>
-    </div>
+
+    <div id="whale"></div>
+
+    <script>
+        // การทำให้ปลาวาฬเคลื่อนที่ตามการคลิก
+        const whale = document.getElementById('whale');
+
+        document.body.addEventListener('click', function(event) {
+            // คำนวณตำแหน่งของ mouse pointer
+            const x = event.clientX - whale.offsetWidth / 2;
+            const y = event.clientY - whale.offsetHeight / 2;
+
+            // เปลี่ยนตำแหน่งปลาวาฬ
+            whale.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+
 </body>
 </html>
